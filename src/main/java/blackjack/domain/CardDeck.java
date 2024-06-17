@@ -10,8 +10,12 @@ import java.util.stream.Stream;
 public class CardDeck {
     private final Deque<Card> cards;
 
-    public CardDeck() {
-        cards = Stream.of(CardProperty.values())
+    protected CardDeck(Deque<Card> cards) {
+        this.cards = cards;
+    }
+
+    public static CardDeck create() {
+        return new CardDeck(Stream.of(CardProperty.values())
                 .flatMap(value -> Stream.of(CardShape.values())
                         .map(shape -> Card.of(value, shape)))
                 .collect(Collectors.collectingAndThen(
@@ -20,7 +24,7 @@ public class CardDeck {
                             Collections.shuffle(collected);
                             return new ArrayDeque<>(collected);
                         }
-                ));
+                )));
     }
 
     public Deque<Card> getCards() {

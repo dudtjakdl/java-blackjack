@@ -20,14 +20,14 @@ class CardTest {
     @Test
     @DisplayName("카드 묶음 덱을 생성한다.")
     void test2() {
-        CardDeck cardDeck = new CardDeck();
+        CardDeck cardDeck = CardDeck.create();
         assertThat(cardDeck.getCards().size()).isEqualTo(52);
     }
 
     @Test
     @DisplayName("카드 묶음 덱을 셔플한다.")
     void test3() {
-        CardDeck cardDeck = new CardDeck();
+        CardDeck cardDeck = CardDeck.create();
         assertThat(cardDeck.getCards().size()).isEqualTo(52);
     }
 }
