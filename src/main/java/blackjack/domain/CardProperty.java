@@ -23,4 +23,12 @@ public enum CardProperty {
         this.property = property;
         this.score = score;
     }
+
+    public String getProperty() {
+        return property;
+    }
+
+    public int getScore() {
+        return score;
+    }
 }

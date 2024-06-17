@@ -4,17 +4,20 @@ import java.util.Deque;
 
 public abstract class User {
     protected Deque<Card> cardDeck;
-    protected boolean isAlive;
 
-    void receiveCard(Card card) {
+    public void receiveCard(Card card) {
         cardDeck.push(card);
+    }
+
+    public int getCardDeckScore() {
+        return cardDeck.stream()
+                .mapToInt(card -> card.getCardProperty().getScore())
+                .sum();
     }
 
     public Deque<Card> getCardDeck() {
         return cardDeck;
     }
 
-    public boolean isAlive() {
-        return isAlive;
-    }
+    public abstract boolean judge();
 }
