@@ -1,5 +1,6 @@
 package blackjack.domain;
 
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 public class BlackJackGame {
@@ -10,16 +11,25 @@ public class BlackJackGame {
         return participants;
     }
 
+    public CardDeck getCardDeck() {
+        return cardDeck;
+    }
+
     public BlackJackGame(String... userNames) {
         this.participants = new Users(userNames);
         this.cardDeck = CardDeck.create();
     }
 
     public void serve(Predicate<User> predicate) {
-        for (User user : participants.getUsers()) {
-            if (predicate.test(user)) {
-                user.receiveCard(cardDeck.getCards().getLast());
+        try {
+            for (User user : participants.getUsers()) {
+                if (predicate.test(user)) {
+                    user.receiveCard(cardDeck.getCards().removeLast());
+                }
             }
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("deck is empty");
         }
+
     }
 }

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CardDeck {
+    public static final int INITIAL_CARDS_COUNT = 52;
     private final Deque<Card> cards;
 
     protected CardDeck(Deque<Card> cards) {
